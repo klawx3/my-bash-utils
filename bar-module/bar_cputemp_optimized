@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "$(cat /sys/class/hwmon/hwmon4/temp1_input | cut -b 1,2) cº"

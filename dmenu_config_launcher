@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#apps to launch
+terminal="alacritty"
+editor="nvim"
+# diccionary of configs
+declare -A config_map
+# Config variables
+config_map["i3"]="$HOME/.config/i3/config"
+config_map["picom"]="$HOME/.config/picom/picom.conf"
+config_map["alacritty"]="$HOME/.config/alacritty/alacritty.yml"
+config_map["xmonad"]="$HOME/.xmonad/xmonad.hs"
+config_map["polybar_config"]="$HOME/.config/polybar/config.ini"
+config_map["polybar_modules"]="$HOME/.config/polybar/modules.ini"
+
+#Formating
+dmenu_format=""
+for value in ${!config_map[@]}; do
+    dmenu_format+="$value\n"
+done
+
+#Selecting config using dmenu
+selected_index=$(echo -e $dmenu_format | dmenu)
+
+#Editing config file 
+if [[ -n "$selected_index" ]]; then
+    file_location="${config_map["$selected_index"]}"
+    terminal_arg="$editor $file_location"
+    $terminal -e $terminal_arg
+fi

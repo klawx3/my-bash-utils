@@ -1,0 +1,11 @@
+#!/bin/bash
+
+python_script="/home/klawx3/pCloudDrive/#Proyectos/escala_notas_python/main.py"
+
+
+if [[ -v MAX_POINTS ]]; then
+	python $python_script $MAX_POINTS $1 
+else
+	echo "Variable MAX_POINTS is not defined\n"
+	echo "Define with -> export MAX_POINT=30"
+fi

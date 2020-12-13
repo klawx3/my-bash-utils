@@ -1,0 +1,5 @@
+#!/bin/bash
+
+memused=$(free -h | awk '(NR == 2) {print $3}')
+memfree=$(free -h |awk '(NR == 2) {print $2}')
+printf "%s %s" "$memused" "$memfree"
